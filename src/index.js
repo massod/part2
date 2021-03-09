@@ -1,17 +1,62 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+//import './index.css';
+//import App from './App';
+//import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+//Global variables
+const course = "Half stack application development "
+ const parts = [{partName:"Fundamentals of React",Ex : 10},{partName: "Using props to pass data", Ex : 7},{partName : "State of a Component", Ex : 14}]
+//App component considered as main component
+const App = ()=> {
+  
+    return(
+     
+    <div>
+      <Header courseName = {course} />
+      <Contents />
+      <Total sum = {parts[0].Ex + parts[1].Ex + parts[2].Ex} />
+    </div>
+    )
+}
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+//Curly brackets and return keyword can be omitted like the following
+const Header = (props) => 
+  (
+    <div>
+      <h1>{props.courseName}</h1>
+    </div>
+  )
+
+const Contents = ()=>{
+  return(
+    <div>
+      <Parts name = {parts[0].partName} ex = {parts[0].Ex} />
+      <Parts name = {parts[1].partName} ex = {parts[1].Ex} />
+      <Parts name = {parts[2].partName} ex = {parts[2].Ex} />
+    </div>
+  )
+}
+const Total = function(props){
+  return(
+    <div>
+      <p>Total Course gradings are :{props.sum}</p>
+    </div>
+  )
+}
+
+const Parts = (props) => {
+  return(
+    <div>
+        <p>{props.name} {props.ex}</p>
+    </div>
+  
+  )
+}
+
+
+
+
+
+ReactDOM.render(<App />,document.getElementById('root'))
+
